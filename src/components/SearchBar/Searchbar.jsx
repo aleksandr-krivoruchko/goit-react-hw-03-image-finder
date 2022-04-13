@@ -1,22 +1,58 @@
-import { SearchbarStyle, SearchForm, SearchFormBtn, SearchFormLabel, SearchFormInput} from "./SearchbarStyle.styled";
+import { VscSearch } from 'react-icons/vsc';
+// import { toast } from 'react-toastify';
+import { SearchbarStyle, SearchForm, SearchFormBtn, SearchFormInput} from "./SearchbarStyle.styled";
+import { Component } from "react";
+import PropTypes from 'prop-types';
 
 
-export const Searchbar = () => {
-	return (
-		<SearchbarStyle>
-  <SearchForm>
-    <SearchFormBtn type="submit">
-      <SearchFormLabel class="button-label">O^O</SearchFormLabel>
-    </SearchFormBtn>
+export class Searchbar extends Component {
+	static propTypes = {
+		onSubmit: PropTypes.func.isRequired,
+	}
 
-    <SearchFormInput
-      class="input"
-      type="text"
-      autocomplete="off"
-      autofocus
-      placeholder="Search images and photos"
-    />
-  </SearchForm>
-</SearchbarStyle>
+	state = {
+		searchValue: "",
+	}
+
+	handleSubmit = (e) => {
+		e.preventDefault();
+		
+		if(this.state.searchValue.trim() === ""){
+			 return alert("Enter correct value!!!")
+		}
+		this.props.onSubmit(this.state.searchValue);
+		this.setState({searchValue: ""})
+	}
+
+
+handleChange = (e) => {
+	const {value} = e.currentTarget;
+
+	this.setState({
+		searchValue: value.toLowerCase(),
+	})
+}
+
+	render(){
+
+		return (
+	<SearchbarStyle>
+		<SearchForm onSubmit={this.handleSubmit}>
+			<SearchFormBtn type="submit">
+				<VscSearch size="20"/>
+			</SearchFormBtn>
+
+			<SearchFormInput
+			value={this.state.searchValue}
+			onChange={this.handleChange}
+			class="input"
+			type="text"
+			autocomplete="off"
+			autofocus
+			placeholder="Search images and photos"
+			/>
+		</SearchForm>
+	</SearchbarStyle>
 	);
+	}
 }
