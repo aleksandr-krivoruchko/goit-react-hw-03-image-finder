@@ -9,7 +9,7 @@ const API_KEY = "25188312-8cdfcf53729040d6ed9110eb8";
 const URL = "https://pixabay.com/api/";
 
 
-export class ImageGallery extends Component {
+export class PicturesView extends Component {
  static propTypes = {
 	   pictures: PropTypes.arrayOf(
     PropTypes.shape({
@@ -65,22 +65,6 @@ render(){
 	 ))}
 	</ImageGalleryStyle>
 	}
-
-
-
-// 	return (
-// 		<>
-// 		{error && <h2>{error.message}</h2>}
-// 		{loading && <h1>Downloading...</h1>}
-// 		{pictures.length === 0 && <h2>Ничего не найдено. Введите запрос в поле поиска</h2>}
-// 	<ImageGalleryStyle>
-//     {pictures.map(({id, webformatURL, tags}) => (
-// 		 <ImageGalleryItem key={id} id={id} src={webformatURL} alt={tags}/>
-// 	 ))}
-// 	</ImageGalleryStyle>
-// 		</>
-		
-// )
 }
 }
 

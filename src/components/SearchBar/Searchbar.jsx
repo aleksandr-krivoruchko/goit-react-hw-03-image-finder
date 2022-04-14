@@ -1,5 +1,5 @@
 import { VscSearch } from 'react-icons/vsc';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { SearchbarStyle, SearchForm, SearchFormBtn, SearchFormInput} from "./SearchbarStyle.styled";
 import { Component } from "react";
 import PropTypes from 'prop-types';
@@ -18,7 +18,8 @@ export class Searchbar extends Component {
 		e.preventDefault();
 		
 		if(this.state.searchValue.trim() === ""){
-			 return alert("Enter correct value!!!")
+			toast.warn('Enter correct value!!!');
+			return
 		}
 		this.props.onSubmit(this.state.searchValue);
 		this.setState({searchValue: ""})

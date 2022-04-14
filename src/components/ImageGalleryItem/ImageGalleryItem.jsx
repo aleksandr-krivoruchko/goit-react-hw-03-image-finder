@@ -1,9 +1,16 @@
-import { GalleryItem, Image } from "./ImageGalleryItemStyle";
+import PropTypes from 'prop-types';
+import { GalleryItem, Image } from "./ImageGalleryItemStyle.styled";
 
-export function ImageGalleryItem({id, webformatURL}) {
+export function ImageGalleryItem({id, src, alt}) {
 	return (
-		<GalleryItem class="gallery-item" id={id}>
-  <Image src={webformatURL} alt="qweqwewqe" />
+		<GalleryItem id={id}>
+  <Image src={src} alt={alt} />
 </GalleryItem>
 	);
 }
+
+ImageGalleryItem.propTypes = {
+   id: PropTypes.number.isRequired,
+   src: PropTypes.string.isRequired,
+   alt: PropTypes.string,
+};
