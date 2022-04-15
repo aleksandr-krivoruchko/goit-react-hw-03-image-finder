@@ -1,9 +1,14 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+
 import { ButtonStyle } from "./ButtonStyle.styled";
 
 
-export function Button() {
+export function Button({onClick}) {
 	return (
-		<ButtonStyle type='button'>Загрузить еще</ButtonStyle>
+		<ButtonStyle type='button' onClick={onClick}>Загрузить еще</ButtonStyle>
 	);
+}
+
+Button.propTypes = {
+	onClick: PropTypes.func,
 }

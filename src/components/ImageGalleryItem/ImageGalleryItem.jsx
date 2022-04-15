@@ -1,16 +1,58 @@
+import { Component } from "react";
 import PropTypes from 'prop-types';
-import { GalleryItem, Image } from "./ImageGalleryItemStyle.styled";
 
-export function ImageGalleryItem({id, src, alt}) {
-	return (
-		<GalleryItem id={id}>
-  <Image src={src} alt={alt} />
-</GalleryItem>
+import { GalleryItem, Image } from "./ImageGalleryItemStyle.styled";
+import { Modal } from "../Modal/Modal";
+
+export class ImageGalleryItem extends Component {
+state = {
+	isOpenModal: false,
+}
+	
+componentDidMount(){
+	document.addEventListener("keydown", this.closeModalOnEsc)
+}
+componentWillUnmount(){
+	document.removeEventListener("keydown", this.closeModalOnEsc)
+}
+
+openModal = () => {
+	this.setState({isOpenModal: true})
+}
+
+closeModal = (e) => {
+		if (e.target.nodeName !== 'IMG') {
+			this.setState({isOpenModal: false});
+	}
+}
+closeModalOnEsc = (e) => {
+		if (e.code === 'Escape') {
+			this.setState({isOpenModal: false});
+	}
+}
+
+
+
+	render(){
+const {id, minSrc, maxSrc, alt} = this.props;
+const {isOpenModal} = this.state;
+
+return (
+		<>
+		<GalleryItem id={id} onClick={this.openModal}>
+		<Image src={minSrc} alt={alt} />
+		</GalleryItem>
+		{isOpenModal &&<Modal src={maxSrc} alt={alt} 
+		closeModal={this.closeModal}/>}
+		</>
 	);
+
+	}
 }
 
 ImageGalleryItem.propTypes = {
    id: PropTypes.number.isRequired,
-   src: PropTypes.string.isRequired,
+   minSrc: PropTypes.string.isRequired,
+	maxSrc: PropTypes.string.isRequired,
    alt: PropTypes.string,
 };
