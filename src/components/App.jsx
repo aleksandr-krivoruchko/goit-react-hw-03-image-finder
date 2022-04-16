@@ -11,7 +11,6 @@ state = {
 	searchValue: "",
 }
 
-
 	handleFormSubmit = (value) => {
 		this.setState({searchValue: value})
 	}

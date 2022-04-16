@@ -5,6 +5,13 @@ import { GalleryItem, Image } from "./ImageGalleryItemStyle.styled";
 import { Modal } from "../Modal/Modal";
 
 export class ImageGalleryItem extends Component {
+static propTypes = {
+	id: PropTypes.number.isRequired,
+	minSrc: PropTypes.string.isRequired,
+	maxSrc: PropTypes.string.isRequired,
+	alt: PropTypes.string,
+};
+
 state = {
 	isOpenModal: false,
 }
@@ -31,8 +38,6 @@ closeModalOnEsc = (e) => {
 	}
 }
 
-
-
 	render(){
 const {id, minSrc, maxSrc, alt} = this.props;
 const {isOpenModal} = this.state;
@@ -42,17 +47,9 @@ return (
 		<GalleryItem id={id} onClick={this.openModal}>
 		<Image src={minSrc} alt={alt} />
 		</GalleryItem>
-		{isOpenModal &&<Modal src={maxSrc} alt={alt} 
-		closeModal={this.closeModal}/>}
+		{isOpenModal && <Modal src={maxSrc} alt={alt} closeModal={this.closeModal}/>}
 		</>
 	);
-
 	}
 }
 
-ImageGalleryItem.propTypes = {
-   id: PropTypes.number.isRequired,
-   minSrc: PropTypes.string.isRequired,
-	maxSrc: PropTypes.string.isRequired,
-   alt: PropTypes.string,
-};

@@ -7,10 +7,9 @@ export function ImageGallery({pictures}) {
 
 	return <ImageGalleryStyle>
     {pictures.map(({id, webformatURL, largeImageURL, tags}) => (
+
 		 <ImageGalleryItem key={id} id={id} minSrc={webformatURL} 
-		 maxSrc={largeImageURL} alt={tags}/>
-		 
-	 ))}
+		 maxSrc={largeImageURL} alt={tags}/>))}
 	</ImageGalleryStyle>
 }
 

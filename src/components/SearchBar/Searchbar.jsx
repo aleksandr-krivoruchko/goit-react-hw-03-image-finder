@@ -18,7 +18,7 @@ export class Searchbar extends Component {
 		e.preventDefault();
 		
 		if(this.state.searchValue.trim() === ""){
-			toast.warn('Enter correct value!!!');
+			toast.warn('Введите корректный запрос!');
 			return
 		}
 		this.props.onSubmit(this.state.searchValue);
