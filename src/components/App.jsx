@@ -119,7 +119,7 @@ export class App extends Component {
       );
     }
     if (status === 'rejected') {
-      return <h2>{error.message}</h2>;
+      return <Title>{error.message}</Title>;
     }
     if (status === 'resolved') {
       return (
