@@ -1,59 +1,60 @@
 import { VscSearch } from 'react-icons/vsc';
 import { toast } from 'react-toastify';
-import { SearchbarStyle, SearchForm, SearchFormBtn, SearchFormInput} from "./SearchbarStyle.styled";
-import { Component } from "react";
+import {
+  SearchbarStyle,
+  SearchForm,
+  SearchFormBtn,
+  SearchFormInput,
+} from './SearchbarStyle.styled';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-
 export class Searchbar extends Component {
-	static propTypes = {
-		onSubmit: PropTypes.func.isRequired,
-	}
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
 
-	state = {
-		searchValue: "",
-	}
+  state = {
+    searchValue: '',
+  };
 
-	handleSubmit = (e) => {
-		e.preventDefault();
-		
-		if(this.state.searchValue.trim() === ""){
-			toast.warn('Введите корректный запрос!');
-			return
-		}
-		this.props.onSubmit(this.state.searchValue);
-		this.setState({searchValue: ""})
-	}
+  handleSubmit = e => {
+    e.preventDefault();
 
+    if (this.state.searchValue.trim() === '') {
+      toast.warn('Введите корректный запрос!');
+      return;
+    }
+    this.props.onSubmit(this.state.searchValue);
+  };
 
-handleChange = (e) => {
-	const {value} = e.currentTarget;
+  handleChange = e => {
+    const { value } = e.currentTarget;
 
-	this.setState({
-		searchValue: value.toLowerCase(),
-	})
-}
+    this.setState({
+      searchValue: value.toLowerCase(),
+    });
+  };
 
-	render(){
+  render() {
+    return (
+      <SearchbarStyle>
+        <SearchForm onSubmit={this.handleSubmit}>
+          <SearchFormBtn type="submit">
+            <VscSearch size="20" />
+          </SearchFormBtn>
 
-		return (
-	<SearchbarStyle>
-		<SearchForm onSubmit={this.handleSubmit}>
-			<SearchFormBtn type="submit">
-				<VscSearch size="20"/>
-			</SearchFormBtn>
-
-			<SearchFormInput
-			value={this.state.searchValue}
-			onChange={this.handleChange}
-			class="input"
-			type="text"
-			autocomplete="off"
-			autofocus
-			placeholder="Search images and photos"
-			/>
-		</SearchForm>
-	</SearchbarStyle>
-	);
-	}
+          <SearchFormInput
+            value={this.state.searchValue}
+            onChange={this.handleChange}
+            class="input"
+            type="text"
+            autocomplete="off"
+            autofocus
+            placeholder="поле поиска изображений и фотографий"
+          />
+        </SearchForm>
+      </SearchbarStyle>
+    );
+  }
 }

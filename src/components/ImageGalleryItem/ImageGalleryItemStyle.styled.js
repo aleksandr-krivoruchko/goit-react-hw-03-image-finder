@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const GalleryItem = styled.li`
   border-radius: 2px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
@@ -12,8 +11,8 @@ export const Image = styled.img`
   height: 260px;
   object-fit: cover;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  &hover{
-	   transform: scale(1.03);
-  cursor: zoom-in;
+  &hover {
+    transform: scale(1.03);
+    cursor: zoom-in;
   }
 `;
